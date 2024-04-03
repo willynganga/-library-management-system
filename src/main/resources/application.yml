@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: library-management-system
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: doadmin
+    password: $imple.690
+    url: jdbc:postgresql://localhost:5433/library_mngt_db
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+app:
+  auth:
+    tokenSecret: UmFtcGFnZS5FY2xlY3RpY3MuMjAwNw==
+    tokenExpiry: 900000
