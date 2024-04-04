@@ -15,15 +15,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class BorrowingRecordService {
-  private final BorrowingRecordRepository borrowingRecordRepository;
   private final BookService bookService;
+  private final BorrowingRecordRepository borrowingRecordRepository;
   private final PatronService patronService;
 
   @Transactional
   public UniversalResponse borrowBook(String bookId, String patronId) {
     Book book = bookService.getBookById(bookId);
     Patron patron = patronService.getPatronById(patronId);
-    BorrowingRecord borrowingRecord = BorrowingRecord.builder().book(book).patron(patron).build();
+    BorrowingRecord borrowingRecord =
+        BorrowingRecord.builder().book(book).patron(patron).returned(false).build();
     BorrowingRecord savedRecord = borrowingRecordRepository.save(borrowingRecord);
 
     return new UniversalResponse(

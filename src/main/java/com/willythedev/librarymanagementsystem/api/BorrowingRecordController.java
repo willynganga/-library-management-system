@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1")
 public class BorrowingRecordController {
   private final BorrowingRecordService borrowingRecordService;
 
-  @PostMapping("/borrow/{bookId}/patron/{patronId}")
-  @PreAuthorize("hasAnyAuthority('ROLE_PATRON')")
+  @PostMapping(path = "/borrow/{bookId}/patron/{patronId}")
+  @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
   public ResponseEntity<UniversalResponse> borrowBook(
-      @PathVariable String bookId, @PathVariable String patronId) {
+      @PathVariable("bookId") String bookId, @PathVariable("patronId") String patronId) {
     return ResponseEntityUtil.getResponseEntity(
         borrowingRecordService.borrowBook(bookId, patronId));
   }
 
   @PutMapping("/return/{bookId}/patron/{patronId}")
-  @PreAuthorize("hasAnyAuthority('ROLE_PATRON')")
+  @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
   public ResponseEntity<UniversalResponse> returnBook(
       @PathVariable String bookId, @PathVariable String patronId) {
     return ResponseEntityUtil.getResponseEntity(

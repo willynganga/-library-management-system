@@ -28,10 +28,4 @@ public class SystemUserController {
       @RequestBody CreateSystemUserDto createSystemUserDto) {
     return ResponseEntityUtil.getResponseEntity(userService.registerAdmin(createSystemUserDto));
   }
-
-  @PostMapping("/patron")
-  public ResponseEntity<UniversalResponse> registerPatron(
-      @RequestBody CreateSystemUserDto createSystemUserDto) {
-    return ResponseEntityUtil.getResponseEntity(userService.registerPatron(createSystemUserDto));
-  }
 }

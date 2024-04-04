@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableCaching
 public class CacheConfig {
-
   @Bean
   public CacheManagerCustomizer<ConcurrentMapCacheManager> cacheManagerCustomizer() {
     return cacheManager -> cacheManager.setAllowNullValues(false);

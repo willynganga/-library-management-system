@@ -38,6 +38,6 @@ public class BorrowingRecord {
   @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
   private Book book;
 
-  @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+  @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
   private Patron patron;
 }

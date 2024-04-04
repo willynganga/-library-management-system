@@ -99,9 +99,9 @@ public class PatronService {
 
     patron.setAddress(
         updatePatronDto.address() != null ? updatePatronDto.address() : patron.getAddress());
-    patron.setName(updatePatronDto.name() != null ? updatePatronDto.address() : patron.getName());
+    patron.setName(updatePatronDto.name() != null ? updatePatronDto.name() : patron.getName());
     patron.setEmail(updatePatronDto.email() != null ? updatePatronDto.email() : patron.getEmail());
-    patron.setName(
+    patron.setPhoneNumber(
         updatePatronDto.phoneNumber() != null
             ? updatePatronDto.phoneNumber()
             : patron.getPhoneNumber());

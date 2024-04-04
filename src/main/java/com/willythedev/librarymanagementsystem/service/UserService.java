@@ -10,19 +10,19 @@ import com.willythedev.librarymanagementsystem.wrapper.LoginRequest;
 import com.willythedev.librarymanagementsystem.wrapper.UniversalResponse;
 import java.util.Map;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-  private JwtAuthenticationManager jwtAuthenticationManager;
-  private PasswordEncoder passwordEncoder;
-  private SystemUserRepository systemUserRepository;
-  private TokenProvider tokenProvider;
+  private final JwtAuthenticationManager jwtAuthenticationManager;
+  private final PasswordEncoder passwordEncoder;
+  private final SystemUserRepository systemUserRepository;
+  private final TokenProvider tokenProvider;
 
   public UniversalResponse loginUser(LoginRequest loginRequest) {
     Authentication authentication =
@@ -39,30 +39,6 @@ public class UserService {
 
   public UniversalResponse registerPatron(CreateSystemUserDto createSystemUserDto) {
     return createSystemUser(createSystemUserDto, "ROLE_PATRON");
-  }
-
-  @Lazy
-  @Autowired
-  public void setJwtAuthenticationManager(JwtAuthenticationManager jwtAuthenticationManager) {
-    this.jwtAuthenticationManager = jwtAuthenticationManager;
-  }
-
-  @Lazy
-  @Autowired
-  public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-    this.passwordEncoder = passwordEncoder;
-  }
-
-  @Lazy
-  @Autowired
-  public void setSystemUserRepository(SystemUserRepository systemUserRepository) {
-    this.systemUserRepository = systemUserRepository;
-  }
-
-  @Lazy
-  @Autowired
-  public void setTokenProvider(TokenProvider tokenProvider) {
-    this.tokenProvider = tokenProvider;
   }
 
   private UniversalResponse createSystemUser(CreateSystemUserDto createSystemUserDto, String role) {
