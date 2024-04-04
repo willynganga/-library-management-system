@@ -29,10 +29,10 @@ public class BorrowingRecord {
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
 
-  @CreatedBy protected String createdBy;
-  @CreatedDate protected LocalDateTime createdOn;
-  @LastModifiedBy protected String lastModifiedBy;
-  @LastModifiedDate protected LocalDateTime lastModifiedDate;
+  @CreatedBy String createdBy;
+  @CreatedDate LocalDateTime createdOn;
+  @LastModifiedBy String lastModifiedBy;
+  @LastModifiedDate LocalDateTime lastModifiedDate;
   private boolean returned;
 
   @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)

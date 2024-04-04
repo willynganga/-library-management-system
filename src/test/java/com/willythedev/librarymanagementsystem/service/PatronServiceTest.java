@@ -106,7 +106,8 @@ class PatronServiceTest {
     Assertions.assertEquals(200, universalResponse.status());
     Assertions.assertEquals("Patron Found", universalResponse.message());
     Assertions.assertEquals(
-        new PatronDto("f8f78e70-a8cf-4766-baf9-bfcc7d671a85", "Jane Doe"),
+        new PatronDto(
+            "f8f78e70-a8cf-4766-baf9-bfcc7d671a85", "Jane Doe", "test@test.com", "254712345678"),
         universalResponse.data());
   }
 
@@ -190,7 +191,12 @@ class PatronServiceTest {
                 .name("Jane Doe")
                 .build());
     List<PatronDto> expectedPatrons =
-        List.of(new PatronDto("f8f78e70-a8cf-4766-baf9-bfcc7d671a85", "Jane Doe"));
+        List.of(
+            new PatronDto(
+                "f8f78e70-a8cf-4766-baf9-bfcc7d671a85",
+                "Jane Doe",
+                "test@test.com",
+                "254712345678"));
 
     Mockito.when(patronRepository.findAll(PageRequest.of(page, size)))
         .thenReturn(new PageImpl<>(patronList));

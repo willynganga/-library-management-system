@@ -5,5 +5,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BorrowingRecordRepository extends JpaRepository<BorrowingRecord, String> {
-  Optional<BorrowingRecord> findByBookIdAndPatronId(String bookId, String patronId);
+  Optional<BorrowingRecord> findFirstByBookIdAndPatronIdAndReturnedFalse(
+      String bookId, String patronId);
 }

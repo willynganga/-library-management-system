@@ -4,9 +4,9 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: doadmin
-    password: $imple.690
-    url: jdbc:postgresql://localhost:5433/library_mngt_db
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+    url: ${POSTGRES_URL}
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -15,5 +15,5 @@ spring:
 
 app:
   auth:
-    tokenSecret: UmFtcGFnZS5FY2xlY3RpY3MuMjAwNw==
-    tokenExpiry: 900000
+    tokenSecret: ${JWT_SECRET}
+    tokenExpiry: ${JWT_EXPIRATION_DURATION}

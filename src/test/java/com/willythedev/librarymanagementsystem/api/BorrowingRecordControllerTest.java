@@ -23,7 +23,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @AutoConfigureMockMvc(addFilters = false)
 class BorrowingRecordControllerTest {
   private static BorrowingRecordDto getBorrowingRecordDto() {
-    PatronDto patronDto = new PatronDto("f8f78e70-a8cf-4766-baf9-bfcc7d671a85", "Jane Doe");
+    PatronDto patronDto =
+        new PatronDto(
+            "f8f78e70-a8cf-4766-baf9-bfcc7d671a85", "Jane Doe", "test@test.com", "254712345678");
     BookDto bookDto =
         new BookDto(
             "f8f78e70-a8cf-4766-baf9-bfcc7d671a86",

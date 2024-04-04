@@ -23,7 +23,9 @@ public class EntityToDtoConverter {
               book.getPublicationYear());
 
   public static Function<Patron, PatronDto> convertPatronToPatronDto =
-      patron -> new PatronDto(patron.getId(), patron.getName());
+      patron ->
+          new PatronDto(
+              patron.getId(), patron.getName(), patron.getEmail(), patron.getPhoneNumber());
 
   public static Function<BorrowingRecord, BorrowingRecordDto> convertBorrowingRecordToDto =
       borrowingRecord ->

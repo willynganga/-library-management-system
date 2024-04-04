@@ -1,5 +1,6 @@
 package com.willythedev.librarymanagementsystem.service;
 
+import com.willythedev.librarymanagementsystem.exception.ItemExistsException;
 import com.willythedev.librarymanagementsystem.exception.ItemNotFoundException;
 import com.willythedev.librarymanagementsystem.model.Book;
 import com.willythedev.librarymanagementsystem.model.BorrowingRecord;
@@ -62,6 +63,10 @@ class BorrowingRecordServiceTest {
     BorrowingRecord borrowingRecord = getBorrowingRecord();
 
     Mockito.when(bookService.getBookById(bookId)).thenReturn(book);
+    Mockito.when(
+            borrowingRecordRepository.findFirstByBookIdAndPatronIdAndReturnedFalse(
+                bookId, patronId))
+        .thenReturn(Optional.empty());
     Mockito.when(patronService.getPatronById(patronId)).thenReturn(patron);
     Mockito.when(borrowingRecordRepository.save(ArgumentMatchers.any()))
         .thenReturn(borrowingRecord);
@@ -86,7 +91,9 @@ class BorrowingRecordServiceTest {
     final String patronId = "f8f78e70-a8cf-4766-baf9-bfcc7d671a86";
     BorrowingRecord borrowingRecord = getBorrowingRecord();
 
-    Mockito.when(borrowingRecordRepository.findByBookIdAndPatronId(bookId, patronId))
+    Mockito.when(
+            borrowingRecordRepository.findFirstByBookIdAndPatronIdAndReturnedFalse(
+                bookId, patronId))
         .thenReturn(Optional.of(borrowingRecord));
     Mockito.when(borrowingRecordRepository.save(ArgumentMatchers.any()))
         .thenReturn(borrowingRecord);
@@ -134,11 +141,33 @@ class BorrowingRecordServiceTest {
   }
 
   @Test
+  void cannotBorrowBookThatHasIsBorrowedTest() {
+    final String bookId = "f8f78e70-a8cf-4766-baf9-bfcc7d671a85";
+    final String patronId = "f8f78e70-a8cf-4766-baf9-bfcc7d671a86";
+    Book book = getBook();
+    Patron patron = getPatron();
+
+    Mockito.when(bookService.getBookById(bookId)).thenReturn(book);
+    Mockito.when(patronService.getPatronById(patronId)).thenReturn(patron);
+    Mockito.when(
+            borrowingRecordRepository.findFirstByBookIdAndPatronIdAndReturnedFalse(
+                bookId, patronId))
+        .thenReturn(Optional.of(new BorrowingRecord()));
+
+    Assertions.assertThrows(
+        ItemExistsException.class, () -> borrowingRecordService.borrowBook(bookId, patronId));
+
+    verifyNoMoreInteractions();
+  }
+
+  @Test
   void cannotReturnBookIfRecordDoesNotExistByBookAndPatronIdTest() {
     final String bookId = "f8f78e70-a8cf-4766-baf9-bfcc7d671a85";
     final String patronId = "f8f78e70-a8cf-4766-baf9-bfcc7d671a86";
 
-    Mockito.when(borrowingRecordRepository.findByBookIdAndPatronId(bookId, patronId))
+    Mockito.when(
+            borrowingRecordRepository.findFirstByBookIdAndPatronIdAndReturnedFalse(
+                bookId, patronId))
         .thenReturn(Optional.empty());
 
     ItemNotFoundException itemNotFoundException =

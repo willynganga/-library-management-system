@@ -24,7 +24,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @AutoConfigureMockMvc(addFilters = false)
 class PatronControllerTest {
   private static PatronDto getPatronDto() {
-    return new PatronDto("f8f78e70-a8cf-4766-baf9-bfcc7d671a85", "Jane Doe");
+    return new PatronDto(
+        "f8f78e70-a8cf-4766-baf9-bfcc7d671a85", "Jane Doe", "test@test.com", "254712345678");
   }
 
   @MockBean PatronService patronService;
@@ -121,7 +122,9 @@ class PatronControllerTest {
     final String patronId = "foo";
     UpdatePatronDto updatePatronDto =
         new UpdatePatronDto("John Doe", "Street 171", "test@test.com", "254712345678");
-    PatronDto patronDto = new PatronDto("f8f78e70-a8cf-4766-baf9-bfcc7d671a85", "John Doe");
+    PatronDto patronDto =
+        new PatronDto(
+            "f8f78e70-a8cf-4766-baf9-bfcc7d671a85", "John Doe", "test@test.com", "254712345678");
     Gson gson = new Gson();
     Mockito.when(patronService.updatePatron(patronId, updatePatronDto))
         .thenReturn(new UniversalResponse(200, "Updated patron successfully", patronDto));
