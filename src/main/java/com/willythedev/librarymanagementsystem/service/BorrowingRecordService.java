@@ -1,5 +1,6 @@
 package com.willythedev.librarymanagementsystem.service;
 
+import com.willythedev.librarymanagementsystem.exception.ItemExistsException;
 import com.willythedev.librarymanagementsystem.exception.ItemNotFoundException;
 import com.willythedev.librarymanagementsystem.model.Book;
 import com.willythedev.librarymanagementsystem.model.BorrowingRecord;
@@ -15,15 +16,23 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class BorrowingRecordService {
-  private final BorrowingRecordRepository borrowingRecordRepository;
   private final BookService bookService;
+  private final BorrowingRecordRepository borrowingRecordRepository;
   private final PatronService patronService;
 
   @Transactional
   public UniversalResponse borrowBook(String bookId, String patronId) {
     Book book = bookService.getBookById(bookId);
     Patron patron = patronService.getPatronById(patronId);
-    BorrowingRecord borrowingRecord = BorrowingRecord.builder().book(book).patron(patron).build();
+    Optional<BorrowingRecord> borrowingRecordOptional =
+        borrowingRecordRepository.findFirstByBookIdAndPatronIdAndReturnedFalse(bookId, patronId);
+
+    if (borrowingRecordOptional.isPresent()) {
+      throw new ItemExistsException("Book has already been borrowed");
+    }
+
+    BorrowingRecord borrowingRecord =
+        BorrowingRecord.builder().book(book).patron(patron).returned(false).build();
     BorrowingRecord savedRecord = borrowingRecordRepository.save(borrowingRecord);
 
     return new UniversalResponse(
@@ -35,7 +44,7 @@ public class BorrowingRecordService {
   @Transactional
   public UniversalResponse returnBook(String bookId, String patronId) {
     Optional<BorrowingRecord> borrowingRecordOptional =
-        borrowingRecordRepository.findByBookIdAndPatronId(bookId, patronId);
+        borrowingRecordRepository.findFirstByBookIdAndPatronIdAndReturnedFalse(bookId, patronId);
 
     if (borrowingRecordOptional.isEmpty()) {
       throw new ItemNotFoundException("Borrowing record not found");

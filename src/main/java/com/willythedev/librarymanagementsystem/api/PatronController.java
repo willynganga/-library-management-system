@@ -38,7 +38,7 @@ public class PatronController {
 
   @CacheEvict("patrons")
   @DeleteMapping("/{id}")
-  @PreAuthorize("hasAnyAuthority('ROLE_PATRON')")
+  @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
   public ResponseEntity<UniversalResponse> deletePatron(
       @PathVariable("id") @NotBlank @NotEmpty String patronId) {
     return ResponseEntityUtil.getResponseEntity(patronService.deletePatron(patronId));
@@ -47,7 +47,7 @@ public class PatronController {
   @GetMapping
   @Cacheable("patrons")
   public ResponseEntity<UniversalResponse> findAllPatrons(
-      @RequestParam int page, @RequestBody int size) {
+      @RequestParam int page, @RequestParam int size) {
     return ResponseEntityUtil.getResponseEntity(patronService.findAllPatrons(page, size));
   }
 
@@ -60,7 +60,7 @@ public class PatronController {
 
   @CacheEvict("patrons")
   @PutMapping("/{id}")
-  @PreAuthorize("hasAnyAuthority('ROLE_PATRON')")
+  @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
   public ResponseEntity<UniversalResponse> updatePatron(
       @PathVariable("id") @NotBlank @NotEmpty String patronId,
       @Valid @RequestBody UpdatePatronDto updatePatronDto) {
