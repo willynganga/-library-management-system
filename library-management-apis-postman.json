@@ -21,12 +21,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/admin",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/auth/admin",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -67,12 +65,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/login",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/auth/login",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -99,12 +95,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/books?page=0&size=10",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/books?page=0&size=10",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -149,16 +143,50 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/books",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/books",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
 						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{prod}}/api/v1/books/:id",
+					"host": [
+						"{{prod}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -180,12 +208,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/books/:bookId",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/books/:bookId",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -227,12 +253,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/books/aaac6f70-ada2-4a89-867c-9c000befb52b",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/books/aaac6f70-ada2-4a89-867c-9c000befb52b",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -268,12 +292,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/patrons",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/patrons",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -299,12 +321,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/patrons/:id",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/patrons/:id",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -337,12 +357,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/patrons?page=0&size=10",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/patrons?page=0&size=10",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -378,12 +396,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/patrons/:id",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/patrons/:id",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -425,12 +441,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/patrons/:id",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/patrons/:id",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -463,12 +477,10 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/borrow/:bookId/patron/:patronId",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/borrow/:bookId/patron/:patronId",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -507,12 +519,10 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/return/:bookId/patron/:patronId",
-					"protocol": "http",
+					"raw": "{{prod}}/api/v1/return/:bookId/patron/:patronId",
 					"host": [
-						"localhost"
+						"{{prod}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
