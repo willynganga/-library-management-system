@@ -34,14 +34,6 @@ public class UserService {
   }
 
   public UniversalResponse registerAdmin(CreateSystemUserDto createSystemUserDto) {
-    return createSystemUser(createSystemUserDto, "ROLE_ADMIN");
-  }
-
-  public UniversalResponse registerPatron(CreateSystemUserDto createSystemUserDto) {
-    return createSystemUser(createSystemUserDto, "ROLE_PATRON");
-  }
-
-  private UniversalResponse createSystemUser(CreateSystemUserDto createSystemUserDto, String role) {
     Optional<SystemUser> existingSystemUser =
         systemUserRepository.findByEmail(createSystemUserDto.email());
 
@@ -53,7 +45,7 @@ public class UserService {
         SystemUser.builder()
             .email(createSystemUserDto.email())
             .password(passwordEncoder.encode(createSystemUserDto.password()))
-            .role(role)
+            .role("ROLE_ADMIN")
             .build();
     systemUserRepository.save(systemUser);
 
