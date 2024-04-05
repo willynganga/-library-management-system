@@ -43,11 +43,4 @@ spotless {
 		removeUnusedImports()
 		googleJavaFormat()
 	}
-	format("misc") {
-		target ("*.gradle", ".gitignore")
-
-		indentWithTabs()
-		trimTrailingWhitespace()
-		endWithNewline()
-	}
 }
