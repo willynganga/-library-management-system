@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,12 +12,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler {
-  @ExceptionHandler(value = BadCredentialsException.class)
-  public ResponseEntity<UniversalResponse> handleBadCredentialsException(
-      BadCredentialsException badCredentialsException) {
+  @ExceptionHandler(value = CustomAuthenticationException.class)
+  public ResponseEntity<UniversalResponse> handleCustomAuthenticationException(
+      CustomAuthenticationException customAuthenticationException) {
     return ResponseEntity.ok()
         .contentType(MediaType.APPLICATION_JSON)
-        .body(new UniversalResponse(401, badCredentialsException.getMessage(), Map.of()));
+        .body(new UniversalResponse(401, customAuthenticationException.getMessage(), Map.of()));
   }
 
   @ExceptionHandler(value = ItemExistsException.class)
