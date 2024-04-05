@@ -1,11 +1,10 @@
 package com.willythedev.librarymanagementsystem.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
@@ -35,9 +34,11 @@ public class BorrowingRecord {
   @LastModifiedDate LocalDateTime lastModifiedDate;
   private boolean returned;
 
-  @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+  @ManyToOne
+  @JoinColumn(name = "book_id")
   private Book book;
 
-  @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+  @ManyToOne
+  @JoinColumn(name = "patron_id")
   private Patron patron;
 }
