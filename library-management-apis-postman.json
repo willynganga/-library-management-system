@@ -9,11 +9,14 @@
 		{
 			"name": "Register Admin",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"password\": \"pass123\",\n  \"email\": \"test2@test.com\"\n}",
+					"raw": "{\n  \"password\": \"pass123\",\n  \"email\": \"test@test.com\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -87,7 +90,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwicm9sZXMiOiJST0xFX0FETUlOIiwiaWF0IjoxNzEyMjQ5NDg4LCJleHAiOjE3MTIyNTMwODh9.VO-8a-3Whm8JfrGXOxsvxOBM3H8IXsFH5rQE6miLmt3oXosRANvqZcoETGS3s_cCpi-SpTnhMstrm7sq3ALljA",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -126,7 +129,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwicm9sZXMiOiJST0xFX0FETUlOIiwiaWF0IjoxNzEyMjQ5NDg4LCJleHAiOjE3MTIyNTMwODh9.VO-8a-3Whm8JfrGXOxsvxOBM3H8IXsFH5rQE6miLmt3oXosRANvqZcoETGS3s_cCpi-SpTnhMstrm7sq3ALljA",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -200,7 +203,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwicm9sZXMiOiJST0xFX0FETUlOIiwiaWF0IjoxNzEyMjQ5NDg4LCJleHAiOjE3MTIyNTMwODh9.VO-8a-3Whm8JfrGXOxsvxOBM3H8IXsFH5rQE6miLmt3oXosRANvqZcoETGS3s_cCpi-SpTnhMstrm7sq3ALljA",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -236,7 +239,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwicm9sZXMiOiJST0xFX0FETUlOIiwiaWF0IjoxNzEyMjQ5NDg4LCJleHAiOjE3MTIyNTMwODh9.VO-8a-3Whm8JfrGXOxsvxOBM3H8IXsFH5rQE6miLmt3oXosRANvqZcoETGS3s_cCpi-SpTnhMstrm7sq3ALljA",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -576,7 +579,7 @@
 		},
 		{
 			"key": "prod",
-			"value": "",
+			"value": "https://goldfish-app-k9grf.ondigitalocean.app",
 			"type": "string"
 		},
 		{
